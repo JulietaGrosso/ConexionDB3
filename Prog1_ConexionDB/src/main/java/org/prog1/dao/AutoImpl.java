@@ -6,8 +6,7 @@ import org.prog1.entities.Marca;
 import org.prog1.interfaces.AdmConexion;
 import org.prog1.interfaces.DAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +68,7 @@ public class AutoImpl implements DAO<Auto, Integer> , AdmConexion{
 
     Auto auto = objeto;
     Connection conn = obtenerConexion();
-    if (this.existById(objeto.getIdAuto())) {
+    if (this.existsById(objeto.getIdAuto())) {
 
       String sql = "UPDATE autos SET " +
           "patente = '" + auto.getPatente() + "', " +
@@ -99,19 +98,18 @@ public class AutoImpl implements DAO<Auto, Integer> , AdmConexion{
   @Override
   public void delete(Integer idAuto) {
     Connection conn = obtenerConexion();
-    PreparedStatement preparedStatement=null;
-
+    PreparedStatement pst=null;
 
 
        // 3 crear instruccion
      try {
-      pst = conn.createStatement(SQL_DELETE);
+      pst = conn.prepareStatement(AutoImpl.SQL_DELETE);
        pst.setInt(1,idAuto);
 
       // 4 ejecutar instruccion
       pst.execute();
       // 5 cerrar conexion
-      st.close();
+      pst.close();
       conn.close();
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -122,7 +120,7 @@ public class AutoImpl implements DAO<Auto, Integer> , AdmConexion{
 
   @Override
   public Auto getById(Integer id) {
-    conn = obtenerConexion();
+   Connection conn = obtenerConexion();
     String sql = "SELECT * FROM autos WHERE idAuto = " + id;
     // se crea un statement
     Statement st = null;
@@ -152,16 +150,13 @@ public class AutoImpl implements DAO<Auto, Integer> , AdmConexion{
     return auto;
   }
 
-  @Override
-  public boolean existsById(Integer id) {
-    return false;
-  }
+
 
 
 
 @Override
 public boolean existsById(Integer id) {
-  conn = AdministradorDeConexion.obtenerConexion();
+ Connection conn = AdministradorDeConexion.obtenerConexion();
   String sql = "SELECT * FROM autos WHERE idAuto = " + id;
   // se crea un statement
   Statement st = null;

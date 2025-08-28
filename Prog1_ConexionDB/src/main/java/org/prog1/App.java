@@ -2,6 +2,7 @@ package org.prog1;
 
 import org.prog1.configuracion.AdministradorDeConexion;
 import org.prog1.dao.AutoDAO;
+import org.prog1.dao.AutoImpl;
 import org.prog1.entities.Auto;
 import org.prog1.entities.Marca;
 
@@ -49,8 +50,9 @@ public class App {
     Auto autoTest=
         new Auto("ccccc", "Azul", 2025, 0,
             Marca.Toyota, "Corolla");
-    autoImpl.autoImpl = new AutoImpl();
+    AutoImpl autoImpl = new AutoImpl();
     autoImpl.insert(autoTest);
+
 
     /*
     autoDAO.delete(16);
