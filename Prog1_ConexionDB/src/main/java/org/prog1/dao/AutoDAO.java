@@ -16,7 +16,7 @@ public class AutoDAO {
   private static Connection conn;
 
   public void update(Auto auto) {
-    // establecer la conexion
+    // establecer la conexión
     conn = AdministradorDeConexion.obtenerConexion();
     // solo si el auto existe lo modifico
     if (this.existById(auto.getIdAuto())) {
