@@ -1,9 +1,8 @@
 package org.prog1.dao;
 
+import com.mysql.cj.xdevapi.Statement;
 import org.prog1.configuracion.AdministradorDeConexion;
-import org.prog1.entities.Auto;
 import org.prog1.entities.Cliente;
-import org.prog1.entities.Marca;
 import org.prog1.interfaces.AdmConexion;
 import org.prog1.interfaces.DAO;
 
@@ -14,12 +13,12 @@ import java.util.List;
 public class ClienteImpl implements DAO<Cliente,Integer> , AdmConexion {
 
     private static final String SQL_INSERT =
-            "INSERT INTO cliente (idCliente, nombre, apellido, dni, correo, localidad)" +
-                    "VALUES (?  ?  ?  ?  ?  ?)";
+            "INSERT INTO cliente (idCliente, nombre, apellido, telefono, correo)" +
+                    "VALUES (?  ?  ?  ?  ?)";
 
     private static final String SQL_UPDATE =  "UPDATE cliente SET " +
-            "idCliente = ? , nombre = ?, apellido = ?, dni = ? " +
-            ", correo = ?, localidad = ? " + " WHERE idCliente = ? ";
+            "idCliente = ? , nombre = ?, apellido = ?, telefono = ? " +
+            ", correo = ? " + " WHERE idCliente = ? ";
 
     private static final String SQL_DELETE = "DELETE  FROM cliente WHERE idCliente = ?";
     private static final String SQL_GETALL = " SELECT * FROM cliente ORDER BY idCliente";
@@ -57,9 +56,8 @@ public class ClienteImpl implements DAO<Cliente,Integer> , AdmConexion {
                     "idCliente = '" + cliente.getIdCliente() + "', " +
                     "nombre = '" + cliente.getNombre() + "', " +
                     "apellido = " + cliente.getApellido() + ", " +
-                    "DNI = " + cliente.getDni() + ", " +
+                    "telefono = " + cliente.getTelefono()+ ", " +
                     "correo = '" + cliente.getCorreo() + "', " +
-                    "localidad = '" + cliente.getLocalidad() + "' " +
                     "WHERE idCliente = " + cliente.getIdCliente();
             Statement st = null;
 
@@ -118,9 +116,8 @@ public class ClienteImpl implements DAO<Cliente,Integer> , AdmConexion {
                 cliente.setIdCliente(rs.getInt("idCliente"));
                 cliente.setNombre((rs.getString("nombre")));
                 cliente.setApellido(rs.getString("apellido"));
-                cliente.setDni(rs.getInt("dni"));
+                cliente.setTelefono(rs.getInt("telefono"));
                 cliente.setCorreo(rs.getString("correo"));
-                cliente.setLocalidad(rs.getString("localidad"));
             }
             rs.close();
             st.close();

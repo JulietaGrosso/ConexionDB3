@@ -18,7 +18,7 @@ public class AdministradorDeConexion {
     String dbUsuario = "root";
 
     // pass bd
-    String dbPass = "root";
+    String dbPass = "123456";
 
     Connection conn = null;
 

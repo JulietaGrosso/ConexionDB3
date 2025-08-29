@@ -6,22 +6,20 @@ public class Cliente {
     private int idCliente;
     private String nombre;
     private String apellido;
-    private int dni;
+    private int telefono;
     private String correo;
-    private String localidad;
 
 
     public Cliente(){
 
     }
 
-    public Cliente(int idCliente, String nombre, String apellido,int dni, String correo,String localidad){
+    public Cliente(int idCliente, String nombre, String apellido,int telefono, String correo){
         this.idCliente = idCliente;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.dni = dni;
+        this.telefono = telefono;
         this.correo = correo;
-        this.localidad = localidad;
     }
 
     public int getIdCliente() {
@@ -48,12 +46,12 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public int getDni() {
-        return dni;
+    public int getTelefono() {
+        return telefono;
     }
 
-    public void setDni(int dni) {
-        this.dni = dni;
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
     public String getCorreo() {
@@ -64,13 +62,7 @@ public class Cliente {
         this.correo = correo;
     }
 
-    public String getLocalidad() {
-        return localidad;
-    }
 
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
-    }
 
 
     @Override
@@ -79,9 +71,8 @@ public class Cliente {
                 "idCliente=" + idCliente +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
-                ", dni=" + dni +
+                ", telefono=" + telefono +
                 ", correo='" + correo + '\'' +
-                ", localidad='" + localidad + '\'' +
                 '}';
     }
 
